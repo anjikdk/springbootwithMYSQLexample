@@ -11,4 +11,10 @@ public interface EmployeeService {
 	public List<Employee> getAllEmployees();
 	
 	public List<Employee> getEmployees(String fname);
+	
+	public Employee updateEmployee(Employee emp);
+	
+	public Employee deleteEmployee(Employee emp);
+	
+	public void deleteEmployeeById(Integer id);
 }

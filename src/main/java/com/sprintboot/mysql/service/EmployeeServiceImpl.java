@@ -1,6 +1,7 @@
 package com.sprintboot.mysql.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,31 @@ public class EmployeeServiceImpl implements EmployeeService
 	public List<Employee> getEmployees(String fname) {
 		
 		return employeeRepository.findByFnameStartsWith(fname);
+	}
+
+	@Override
+	public Employee updateEmployee(Employee emp) {
+		return employeeRepository.save(emp);
+	}
+
+	@Override
+	public Employee deleteEmployee(Employee emp) {
+		employeeRepository.delete(emp);
+		
+		return emp;
+	}
+
+	@Override
+	public void deleteEmployeeById(Integer id) {
+		
+//		employeeRepository.deleteById(id);
+		
+		Optional<Employee> emp = employeeRepository.findById(id);
+		if(emp.isPresent())
+		{
+			employeeRepository.delete(emp.get());
+		}
+		
 	}
 	
 	
